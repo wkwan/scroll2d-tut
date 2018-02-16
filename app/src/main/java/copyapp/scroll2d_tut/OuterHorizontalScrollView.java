@@ -28,14 +28,14 @@ public class OuterHorizontalScrollView extends HorizontalScrollView {
     @Override
     public boolean onInterceptTouchEvent(MotionEvent ev) {
         super.onInterceptTouchEvent(ev);
-        scrollView.onInterceptTouchEvent(ev);
+        scrollView.onInterceptTouchEvent(MotionEvent.obtain(ev.getDownTime(), ev.getEventTime(), ev.getAction(), ev.getX() + getScrollX(), ev.getY(), ev.getMetaState()));
         return true;
     }
 
     @Override
     public boolean onTouchEvent(MotionEvent ev) {
         super.onTouchEvent(ev);
-        scrollView.dispatchTouchEvent(ev);
+        scrollView.dispatchTouchEvent(MotionEvent.obtain(ev.getDownTime(), ev.getEventTime(), ev.getAction(), ev.getX() + getScrollX(), ev.getY(), ev.getMetaState()));
         return true;
     }
 }
